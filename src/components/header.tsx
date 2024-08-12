@@ -3,9 +3,7 @@ import { Card, CardContent } from "./ui/card"
 import { Button } from "./ui/button"
 import { MenuIcon } from "lucide-react"
 
-export interface HeaderProps {}
-
-export default function Header(props: HeaderProps) {
+export default function Header() {
   return (
     <>
       <Card>

@@ -8,10 +8,11 @@ import { Button } from "@/components/ui/button"
 import { SearchIcon } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { quickSearchOptions } from "./_contants/quickSearch"
+import { Barbershop } from "@prisma/client"
 
-export default async function Home() {
-  const barbershops = await db.barbershop.findMany()
-  const popularBarbershop = await db.barbershop.findMany({
+export default async function HomePage() {
+  const barbershops: Barbershop[] = await db.barbershop.findMany()
+  const popularBarbershop: Barbershop[] = await db.barbershop.findMany({
     orderBy: {
       name: "desc",
     },
@@ -36,7 +37,7 @@ export default async function Home() {
           {/* Quick Search Buttons*/}
           <div className="no-scrollbar mt-6 flex gap-3 overflow-auto">
             {quickSearchOptions.map((option) => (
-              <Button key={option.title}>
+              <Button className="gap-2" key={option.title}>
                 <Image
                   src={option.imageUrl}
                   alt={option.title}
@@ -81,6 +82,7 @@ export default async function Home() {
             ))}
           </div>
         </div>
+
         <footer>
           <Card>
             <CardContent className="px-5 py-6">

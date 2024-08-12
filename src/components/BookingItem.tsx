@@ -1,10 +1,13 @@
+import { Booking } from "@prisma/client"
 import { Avatar, AvatarImage } from "./ui/avatar"
-import { Badge } from "lucide-react"
+import { Badge } from "./ui/badge"
 import { Card, CardContent } from "./ui/card"
 
-export interface BookingItemProps {}
+export interface BookingItemProps {
+  booking?: Booking
+}
 
-export default function BookingItem(props: BookingItemProps) {
+export default function BookingItem({ booking }: BookingItemProps) {
   return (
     <>
       <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
