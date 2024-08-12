@@ -1,16 +1,21 @@
-import BarbershopItem from "@/components/barbershopItem"
-import Header from "@/components/header"
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { db } from "@/lib/prisma"
-import { SearchIcon } from "lucide-react"
 import Image from "next/image"
+import Header from "@/components/header"
+import BarbershopItem from "@/components/barbershopItem"
+import { db } from "@/lib/prisma"
+import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { SearchIcon } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany()
+  const popularBarbershop = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
   return (
     <>
       <div>
@@ -25,6 +30,44 @@ export default async function Home() {
             <Input placeholder="Buscar" />
             <Button>
               <SearchIcon />
+            </Button>
+          </div>
+
+          {/* Filter Buttons*/}
+          <div className="no-scrollbar mt-6 flex gap-3 overflow-auto">
+            <Button className="gap-2" variant="secondary">
+              <Image
+                src="/scissors.svg"
+                alt="Scissors"
+                height={16}
+                width={16}
+              />
+              Cabelo
+            </Button>
+            <Button className="gap-2" variant="secondary">
+              <Image
+                src="/mustache.svg"
+                alt="Mustache"
+                height={16}
+                width={16}
+              />
+              Barba
+            </Button>
+            <Button className="gap-2" variant="secondary">
+              <Image src="/razor.svg" alt="Razor" height={16} width={16} />
+              Acabamento
+            </Button>
+            <Button className="gap-2" variant="secondary">
+              <Image src="/eyebrow.svg" alt="Eyebrow" height={16} width={16} />
+              Sobrancelha
+            </Button>
+            <Button className="gap-2" variant="secondary">
+              <Image src="/towel.svg" alt="Towel" height={16} width={16} />
+              Massagem
+            </Button>
+            <Button className="gap-2" variant="secondary">
+              <Image src="/shampoo.svg" alt="Shampoo" height={16} width={16} />
+              Hidratação
             </Button>
           </div>
 
@@ -71,7 +114,26 @@ export default async function Home() {
               <BarbershopItem key={barbershop.id} barbershop={barbershop} />
             ))}
           </div>
+
+          {/* Popular */}
+          <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+            Populares
+          </h2>
+          <div className="no-scrollbar flex gap-4 overflow-auto">
+            {popularBarbershop.map((barbershop) => (
+              <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+            ))}
+          </div>
         </div>
+        <footer>
+          <Card>
+            <CardContent className="px-5 py-6">
+              <p className="text-sm text-gray-400">
+                © 2023 Copyright <span className="font-bold">FSW Barber</span>
+              </p>
+            </CardContent>
+          </Card>
+        </footer>
       </div>
     </>
   )
