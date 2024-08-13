@@ -6,13 +6,11 @@ import { db } from "@/lib/prisma"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { SearchIcon } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 import { quickSearchOptions } from "./_contants/quickSearch"
-import { Barbershop } from "@prisma/client"
 
 export default async function HomePage() {
-  const barbershops: Barbershop[] = await db.barbershop.findMany()
-  const popularBarbershop: Barbershop[] = await db.barbershop.findMany({
+  const barbershops = await db.barbershop.findMany()
+  const popularBarbershop = await db.barbershop.findMany({
     orderBy: {
       name: "desc",
     },
