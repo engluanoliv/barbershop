@@ -6,6 +6,8 @@ import { db } from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
 import { notFound } from "next/navigation"
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react"
+import { Sheet, SheetTrigger } from "@/components/ui/sheet"
+import Sidebar from "@/components/Sidebar"
 
 export interface BarbershopPageProps {
   params: {
@@ -47,13 +49,18 @@ export default async function BarbersopPage({ params }: BarbershopPageProps) {
             <ChevronLeftIcon />
           </Link>
         </Button>
-        <Button
-          size="icon"
-          variant="secondary"
-          className="absolute right-4 top-4"
-        >
-          <MenuIcon />
-        </Button>
+        <Sheet>
+          <SheetTrigger>
+            <Button
+              size="icon"
+              variant="secondary"
+              className="absolute right-4 top-4"
+            >
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <Sidebar />
+        </Sheet>
       </div>
 
       {/* Barbershop Details */}
