@@ -1,11 +1,10 @@
 import Image from "next/image"
 import Header from "@/components/Header"
+import Search from "@/components/Search"
 import BookingItem from "@/components/BookingItem"
 import BarbershopItem from "@/components/BarbershopItem"
 import { db } from "@/lib/prisma"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { SearchIcon } from "lucide-react"
 import { quickSearchOptions } from "./_contants/quickSearch"
 
 export default async function HomePage() {
@@ -15,6 +14,7 @@ export default async function HomePage() {
       name: "desc",
     },
   })
+
   return (
     <>
       <div>
@@ -25,11 +25,8 @@ export default async function HomePage() {
           <p>Segunda-feira, 12 de agosto.</p>
 
           {/* Search Button */}
-          <div className="mt-6 flex items-center gap-2">
-            <Input placeholder="Buscar" />
-            <Button>
-              <SearchIcon />
-            </Button>
+          <div className="mt-6">
+            <Search />
           </div>
 
           {/* Quick Search Buttons*/}
