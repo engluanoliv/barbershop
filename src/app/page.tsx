@@ -5,7 +5,8 @@ import BookingItem from "@/components/BookingItem"
 import BarbershopItem from "@/components/BarbershopItem"
 import { db } from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
-import { quickSearchOptions } from "./_contants/quickSearch"
+import { quickSearchServices } from "./_contants/quickSearch"
+import Link from "next/link"
 
 export default async function HomePage() {
   const barbershops = await db.barbershop.findMany()
@@ -31,15 +32,22 @@ export default async function HomePage() {
 
           {/* Quick Search Buttons*/}
           <div className="no-scrollbar mt-6 flex gap-3 overflow-auto">
-            {quickSearchOptions.map((option) => (
-              <Button className="gap-2" key={option.title}>
-                <Image
-                  src={option.imageUrl}
-                  alt={option.title}
-                  height={16}
-                  width={16}
-                />
-                {option.title}
+            {quickSearchServices.map((service) => (
+              <Button
+                key={service.title}
+                className="gap-2"
+                variant="secondary"
+                asChild
+              >
+                <Link href={`/barbershops?service=${service}`}>
+                  <Image
+                    src={service.imageUrl}
+                    alt={service.title}
+                    height={16}
+                    width={16}
+                  />
+                  {service.title}
+                </Link>
               </Button>
             ))}
           </div>

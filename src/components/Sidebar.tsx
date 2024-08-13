@@ -1,6 +1,6 @@
 "use client"
 
-import { quickSearchOptions } from "@/app/_contants/quickSearch"
+import { quickSearchServices } from "@/app/_contants/quickSearch"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { HomeIcon, CalendarIcon, LogOutIcon, LogInIcon } from "lucide-react"
 import { Button } from "./ui/button"
@@ -97,20 +97,20 @@ export default function Sidebar(props: SidebarProps) {
 
         {/* Services */}
         <div className="flex flex-col gap-4 border-b border-solid py-5">
-          {quickSearchOptions.map((option) => (
-            <Button
-              className="justify-start gap-2"
-              variant="ghost"
-              key={option.title}
-            >
-              <Image
-                src={option.imageUrl}
-                alt={option.title}
-                height={18}
-                width={18}
-              />
-              {option.title}
-            </Button>
+          {quickSearchServices.map((service) => (
+            <SheetClose key={service.title} asChild>
+              <Button className="justify-start gap-2" variant="ghost" asChild>
+                <Link href={`/barbershops?service=${service.title}`}>
+                  <Image
+                    src={service.imageUrl}
+                    alt={service.title}
+                    height={18}
+                    width={18}
+                  />
+                  {service.title}
+                </Link>
+              </Button>
+            </SheetClose>
           ))}
         </div>
 
