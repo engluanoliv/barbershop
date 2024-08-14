@@ -7,10 +7,11 @@ import { db } from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
 import { quickSearchServices } from "./_contants/quickSearch"
 import Link from "next/link"
+import { Barbershop } from "@prisma/client"
 
 export default async function HomePage() {
-  const barbershops = await db.barbershop.findMany()
-  const popularBarbershop = await db.barbershop.findMany({
+  const barbershops: Barbershop[] = await db.barbershop.findMany()
+  const popularBarbershop: Barbershop[] = await db.barbershop.findMany({
     orderBy: {
       name: "desc",
     },

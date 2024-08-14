@@ -1,7 +1,7 @@
-import { Booking } from "@prisma/client"
-import { Avatar, AvatarImage } from "./ui/avatar"
 import { Badge } from "./ui/badge"
+import { Booking } from "@prisma/client"
 import { Card, CardContent } from "./ui/card"
+import { Avatar, AvatarImage } from "./ui/avatar"
 
 export interface BookingItemProps {
   booking?: Booking

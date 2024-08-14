@@ -8,6 +8,7 @@ import { notFound } from "next/navigation"
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react"
 import { Sheet, SheetTrigger } from "@/components/ui/sheet"
 import Sidebar from "@/components/Sidebar"
+import { Barbershop, BarbershopService } from "@prisma/client"
 
 export interface BarbershopPageProps {
   params: {
@@ -16,14 +17,15 @@ export interface BarbershopPageProps {
 }
 
 export default async function BarbersopPage({ params }: BarbershopPageProps) {
-  const barbershop = await db.barbershop.findUnique({
-    where: {
-      id: params.id,
-    },
-    include: {
-      services: true,
-    },
-  })
+  const barbershop: (Barbershop & { services: BarbershopService[] }) | null =
+    await db.barbershop.findUnique({
+      where: {
+        id: params.id,
+      },
+      include: {
+        services: true,
+      },
+    })
 
   if (!barbershop) {
     return notFound()
@@ -50,7 +52,7 @@ export default async function BarbersopPage({ params }: BarbershopPageProps) {
           </Link>
         </Button>
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger asChild>
             <Button
               size="icon"
               variant="secondary"

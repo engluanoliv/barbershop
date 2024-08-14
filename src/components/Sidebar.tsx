@@ -1,12 +1,13 @@
 "use client"
 
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "./ui/button"
 import { quickSearchServices } from "@/app/_contants/quickSearch"
 import { Avatar, AvatarImage } from "./ui/avatar"
+import { signIn, signOut, useSession } from "next-auth/react"
 import { HomeIcon, CalendarIcon, LogOutIcon, LogInIcon } from "lucide-react"
-import { Button } from "./ui/button"
 import { SheetContent, SheetHeader, SheetTitle, SheetClose } from "./ui/sheet"
-import Image from "next/image"
-import Link from "next/link"
 import {
   Dialog,
   DialogContent,
@@ -15,7 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
-import { signIn, signOut, useSession } from "next-auth/react"
 
 export interface SidebarProps {}
 

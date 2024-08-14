@@ -1,8 +1,8 @@
 "use client"
 
-import { SmartphoneIcon } from "lucide-react"
-import { Button } from "./ui/button"
 import { toast } from "sonner"
+import { Button } from "./ui/button"
+import { SmartphoneIcon } from "lucide-react"
 
 export interface BarbershopPhoneItemProps {
   phone: string
