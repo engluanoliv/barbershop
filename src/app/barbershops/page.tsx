@@ -14,15 +14,17 @@ export interface BarbershopsPageProps {
 export default async function BarbershopsPage({
   searchParams,
 }: BarbershopsPageProps) {
-  const barbershops: (Barbershop & { services: BarbershopService[] })[] =
-    await db.barbershop.findMany({
-      where: {
-        name: {
-          contains: searchParams.title,
-          mode: "insensitive",
-        },
-        services: {
-          some: {
+  const barbershops: (Barbershop & {
+    barbershopServices: BarbershopService[]
+  })[] = await db.barbershop.findMany({
+    where: {
+      name: {
+        contains: searchParams.title,
+        mode: "insensitive",
+      },
+      barbershopServices: {
+        some: {
+          service: {
             name: {
               contains: searchParams.service,
               mode: "insensitive",
@@ -30,10 +32,15 @@ export default async function BarbershopsPage({
           },
         },
       },
-      include: {
-        services: true,
+    },
+    include: {
+      barbershopServices: {
+        include: {
+          service: true,
+        },
       },
-    })
+    },
+  })
 
   return (
     <>

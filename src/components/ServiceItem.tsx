@@ -5,7 +5,7 @@ import { ptBR } from "date-fns/locale"
 import { Button } from "./ui/button"
 import { Calendar } from "./ui/calendar"
 import { useState } from "react"
-import { BarbershopService } from "@prisma/client"
+import { Service } from "@prisma/client"
 import { Card, CardContent } from "./ui/card"
 import {
   Sheet,
@@ -16,7 +16,7 @@ import {
 } from "./ui/sheet"
 
 export interface ServiceItemProps {
-  service: BarbershopService
+  service: Service
 }
 
 export default function ServiceItem({ service }: ServiceItemProps) {

@@ -8,7 +8,7 @@ import { notFound } from "next/navigation"
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react"
 import { Sheet, SheetTrigger } from "@/components/ui/sheet"
 import Sidebar from "@/components/Sidebar"
-import { Barbershop, BarbershopService } from "@prisma/client"
+import { Barbershop, BarbershopService, Service } from "@prisma/client"
 
 export interface BarbershopPageProps {
   params: {
@@ -17,15 +17,13 @@ export interface BarbershopPageProps {
 }
 
 export default async function BarbersopPage({ params }: BarbershopPageProps) {
-  const barbershop: (Barbershop & { services: BarbershopService[] }) | null =
-    await db.barbershop.findUnique({
-      where: {
-        id: params.id,
-      },
-      include: {
-        services: true,
-      },
-    })
+  const barbershop: Barbershop | null = await db.barbershop.findUnique({
+    where: {
+      id: params.id,
+    },
+  })
+
+  const services: Service[] = await db.service.findMany()
 
   if (!barbershop) {
     return notFound()
@@ -88,7 +86,7 @@ export default async function BarbersopPage({ params }: BarbershopPageProps) {
       <div className="space-y-3 border-b border-solid p-5">
         <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
         <div className="space-y-4">
-          {barbershop.services.map((service) => (
+          {services.map((service) => (
             <ServiceItem service={service} key={service.id} />
           ))}
         </div>

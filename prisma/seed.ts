@@ -1,61 +1,10 @@
 const { PrismaClient } = require("@prisma/client")
+const { Decimal } = require("@prisma/client/runtime/library")
 
 const prisma = new PrismaClient()
 
 async function seedDatabase() {
   try {
-    const images = [
-      "https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png",
-      "https://utfs.io/f/45331760-899c-4b4b-910e-e00babb6ed81-16q.png",
-      "https://utfs.io/f/5832df58-cfd7-4b3f-b102-42b7e150ced2-16r.png",
-      "https://utfs.io/f/7e309eaa-d722-465b-b8b6-76217404a3d3-16s.png",
-      "https://utfs.io/f/178da6b6-6f9a-424a-be9d-a2feb476eb36-16t.png",
-      "https://utfs.io/f/2f9278ba-3975-4026-af46-64af78864494-16u.png",
-      "https://utfs.io/f/988646ea-dcb6-4f47-8a03-8d4586b7bc21-16v.png",
-      "https://utfs.io/f/60f24f5c-9ed3-40ba-8c92-0cd1dcd043f9-16w.png",
-      "https://utfs.io/f/f64f1bd4-59ce-4ee3-972d-2399937eeafc-16x.png",
-      "https://utfs.io/f/e995db6d-df96-4658-99f5-11132fd931e1-17j.png",
-      "https://utfs.io/f/3bcf33fc-988a-462b-8b98-b811ee2bbd71-17k.png",
-      "https://utfs.io/f/5788be0e-2307-4bb4-b603-d9dd237950a2-17l.png",
-      "https://utfs.io/f/6b0888f8-b69f-4be7-a13b-52d1c0c9cab2-17m.png",
-      "https://utfs.io/f/ef45effa-415e-416d-8c4a-3221923cd10f-17n.png",
-      "https://utfs.io/f/ef45effa-415e-416d-8c4a-3221923cd10f-17n.png",
-      "https://utfs.io/f/a55f0f39-31a0-4819-8796-538d68cc2a0f-17o.png",
-      "https://utfs.io/f/5c89f046-80cd-4443-89df-211de62b7c2a-17p.png",
-      "https://utfs.io/f/23d9c4f7-8bdb-40e1-99a5-f42271b7404a-17q.png",
-      "https://utfs.io/f/9f0847c2-d0b8-4738-a673-34ac2b9506ec-17r.png",
-      "https://utfs.io/f/07842cfb-7b30-4fdc-accc-719618dfa1f2-17s.png",
-      "https://utfs.io/f/0522fdaf-0357-4213-8f52-1d83c3dcb6cd-18e.png",
-    ]
-    // barbershop names
-    const barbershopNames = [
-      "Barbearia Vintage",
-      "Corte & Estilo",
-      "Barba & Navalha",
-      "The Dapper Den",
-      "Cabelo & Cia.",
-      "Machado & Tesoura",
-      "Barbearia Elegance",
-      "Aparência Impecável",
-      "Estilo Urbano",
-      "Estilo Clássico",
-    ]
-
-    // barbershop address
-    const addresses = [
-      "Rua da Barbearia, 123",
-      "Avenida dos Cortes, 456",
-      "Praça da Barba, 789",
-      "Travessa da Navalha, 101",
-      "Alameda dos Estilos, 202",
-      "Estrada do Machado, 303",
-      "Avenida Elegante, 404",
-      "Praça da Aparência, 505",
-      "Rua Urbana, 606",
-      "Avenida Clássica, 707",
-    ]
-
-    // barbershop services
     const services = [
       {
         name: "Corte de Cabelo",
@@ -101,43 +50,161 @@ async function seedDatabase() {
       },
     ]
 
-    // create 10 barbershops
+    const barbers = [
+      {
+        name: "João Paulo",
+      },
+      {
+        name: "Paulo Júnior",
+      },
+      {
+        name: "Pedro Alves",
+      },
+      {
+        name: "Gustavo Ryan",
+      },
+      {
+        name: "Luan Ygor",
+      },
+      {
+        name: "David Leonardo",
+      },
+      {
+        name: "Paulo Higor",
+      },
+      {
+        name: "Pedro Carvalho",
+      },
+      {
+        name: "João Paulo",
+      },
+      {
+        name: "Túlio Rocha",
+      },
+      {
+        name: "Victor Lucio",
+      },
+      {
+        name: "Draco Malfoy",
+      },
+      {
+        name: "Harry Potter",
+      },
+    ]
 
-    const barbershops = []
-    for (let i = 0; i < 10; i++) {
-      const name = barbershopNames[i]
-      const address = addresses[i]
-      const imageUrl = images[i]
+    const barbershops = [
+      {
+        name: "Barbearia Vintage",
+        address: "Rua da Barbearia, 123",
+        imageUrl:
+          "https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Corte & Estilo",
+        address: "Avenida dos Cortes, 456",
+        imageUrl:
+          "https://utfs.io/f/45331760-899c-4b4b-910e-e00babb6ed81-16q.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Barba & Navalha",
+        address: "Praça da Barba, 789",
+        imageUrl:
+          "https://utfs.io/f/5832df58-cfd7-4b3f-b102-42b7e150ced2-16r.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "The Dapper Den",
+        address: "Travessa da Navalha, 101",
+        imageUrl:
+          "https://utfs.io/f/7e309eaa-d722-465b-b8b6-76217404a3d3-16s.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Cabelo & Cia.",
+        address: "Alameda dos Estilos, 202",
+        imageUrl:
+          "https://utfs.io/f/178da6b6-6f9a-424a-be9d-a2feb476eb36-16t.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Machado & Tesoura",
+        address: "Estrada do Machado, 303",
+        imageUrl:
+          "https://utfs.io/f/2f9278ba-3975-4026-af46-64af78864494-16u.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Barbearia Elegance",
+        address: "Avenida Elegante, 404",
+        imageUrl:
+          "https://utfs.io/f/988646ea-dcb6-4f47-8a03-8d4586b7bc21-16v.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Aparência Impecável",
+        address: "Praça da Aparência, 505",
+        imageUrl:
+          "https://utfs.io/f/60f24f5c-9ed3-40ba-8c92-0cd1dcd043f9-16w.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Estilo Urbano",
+        address: "Rua Urbana, 606",
+        imageUrl:
+          "https://utfs.io/f/f64f1bd4-59ce-4ee3-972d-2399937eeafc-16x.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+      {
+        name: "Estilo Clássico",
+        address: "Avenida Clássica, 707",
+        imageUrl:
+          "https://utfs.io/f/e995db6d-df96-4658-99f5-11132fd931e1-17j.png",
+        phones: ["(11) 99999-9999", "(11) 99999-9999"],
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
+      },
+    ]
 
-      const barbershop = await prisma.barbershop.create({
-        data: {
-          name,
-          address,
-          imageUrl: imageUrl,
-          phones: ["(11) 99999-9999", "(11) 99999-9999"],
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
-        },
-      })
+    // seed barbershops
+    const barbershopsData = barbershops
+    const createdBarbershops = await prisma.barbershop.createMany({
+      data: barbershopsData,
+    })
 
-      for (const service of services) {
-        await prisma.barbershopService.create({
-          data: {
-            name: service.name,
-            description: service.description,
-            price: service.price,
-            barbershop: {
-              connect: {
-                id: barbershop.id,
-              },
-            },
-            imageUrl: service.imageUrl,
-          },
-        })
-      }
+    // seed barbers
+    const barbersData = barbers
+    const createdBarbers = await prisma.barber.createMany({ data: barbersData })
 
-      barbershops.push(barbershop)
-    }
+    // seed services
+    const servicesData = services.map((service) => ({
+      ...service,
+      price: new Decimal(service.price),
+    }))
+    const createdServices = await prisma.service.createMany({
+      data: servicesData,
+    })
+
+    console.log("Barbershops seeded successfully!!")
 
     await prisma.$disconnect()
   } catch (error) {
