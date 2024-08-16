@@ -185,6 +185,32 @@ async function seedDatabase() {
       },
     ]
 
+    const timeSlots = [
+      { time: "07:00" },
+      { time: "07:30" },
+      { time: "08:00" },
+      { time: "08:30" },
+      { time: "09:00" },
+      { time: "09:30" },
+      { time: "10:00" },
+      { time: "10:30" },
+      { time: "11:00" },
+      { time: "11:30" },
+      { time: "12:00" },
+      { time: "12:30" },
+      { time: "13:00" },
+      { time: "13:30" },
+      { time: "14:00" },
+      { time: "14:30" },
+      { time: "15:00" },
+      { time: "15:30" },
+      { time: "16:00" },
+      { time: "16:30" },
+      { time: "17:00" },
+      { time: "17:30" },
+      { time: "18:00" },
+    ]
+
     // seed barbershops
     const barbershopsData = barbershops
     const createdBarbershops = await prisma.barbershop.createMany({
@@ -202,6 +228,12 @@ async function seedDatabase() {
     }))
     const createdServices = await prisma.service.createMany({
       data: servicesData,
+    })
+
+    //seed timeSlots
+    const timeSlotsData = timeSlots
+    const createdTimeSlots = await prisma.slot.createMany({
+      data: timeSlotsData,
     })
 
     console.log("Barbershops seeded successfully!!")

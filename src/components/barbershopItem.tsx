@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { StarIcon } from "lucide-react"
-import { Barbershop } from "@prisma/client"
+import { Barbershop } from "@prisma/client/index"
 import { Card, CardContent } from "./ui/card"
 
 export interface BarbershopItemProps {

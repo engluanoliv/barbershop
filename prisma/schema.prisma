@@ -127,8 +127,8 @@ model Service {
 
 // Slot Table
 model Slot {
-  id   String   @id @default(uuid())
-  time DateTime
+  id   String @id @default(uuid())
+  time String
 
   slotBarbers  BarberSlot[]
   slotBookings Booking[]

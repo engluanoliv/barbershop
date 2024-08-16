@@ -1,5 +1,5 @@
 import { Badge } from "./ui/badge"
-import { Booking } from "@prisma/client"
+import { Booking } from "@prisma/client/index"
 import { Card, CardContent } from "./ui/card"
 import { Avatar, AvatarImage } from "./ui/avatar"
 

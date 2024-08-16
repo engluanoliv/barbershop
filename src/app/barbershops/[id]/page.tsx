@@ -22,9 +22,7 @@ export default async function BarbersopPage({ params }: BarbershopPageProps) {
       id: params.id,
     },
   })
-
   const services: Service[] = await db.service.findMany()
-
   if (!barbershop) {
     return notFound()
   }
@@ -87,7 +85,11 @@ export default async function BarbersopPage({ params }: BarbershopPageProps) {
         <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
         <div className="space-y-4">
           {services.map((service) => (
-            <ServiceItem service={service} key={service.id} />
+            <ServiceItem
+              barbershop={barbershop}
+              service={service}
+              key={service.id}
+            />
           ))}
         </div>
       </div>
